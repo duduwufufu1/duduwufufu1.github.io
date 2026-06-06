@@ -1,53 +1,52 @@
-1|<!DOCTYPE html>
-2|<html lang="zh-CN">
-3|
-4|<head>
-5|    <meta charset="UTF-8">
-6|<meta name="viewport"
-7|      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-8|<meta http-equiv="X-UA-Compatible" content="ie=edge">
-9|
-10|    <meta name="author" content="duduwufufu1">
-11|
-12|
-13|
-14|
-15|
-16|<title>tag | Hexo</title>
-17|
-18|
-19|
-20|    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="duduwufufu1">
+
+
+
+
+
+<title>tag | Hexo</title>
+
+
+
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
     <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
 
     <link rel="icon" href="/favicon.ico">
-21|
-22|
-23|
-24|
-25|    <!-- stylesheets list from _config.yml -->
-26|    
-27|    <link rel="stylesheet" href="/css/style.css">
-28|    
-29|
-30|
-31|
-32|    <!-- scripts list from _config.yml -->
-33|    
-34|    <script src="/js/script.js" defer></script>
-35|    
-36|    <script src="/js/tocbot.min.js" defer></script>
-37|    
-38|
-39|
-40|
-41|    
-42|    
-43|        
-44|    
-45|
-46|
-47|<meta name="generator" content="Hexo 7.3.0">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js" defer></script>
+    
+    <script src="/js/tocbot.min.js" defer></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 7.3.0">
     
     <!-- GSAP Animation Library -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
@@ -56,104 +55,108 @@
     <!-- Custom Animations -->
     <script src="/js/animation.js" defer></script>
 </head>
-48|
-49|<body>
-50|    <script>
-51|        // this function is used to check current theme before page loaded.
-52|        (() => {
-53|            const currentTheme = window.localStorage && window.localStorage.getItem('theme') || '';
-54|            const isDark = currentTheme === 'dark';
-55|            const pagebody = document.getElementsByTagName('body')[0]
-56|            if (isDark) {
-57|                pagebody.classList.add('dark-theme');
-58|                // mobile
-59|                document.getElementById("mobile-toggle-theme").innerText = "· Dark"
-60|            } else {
-61|                pagebody.classList.remove('dark-theme');
-62|                // mobile
-63|                document.getElementById("mobile-toggle-theme").innerText = "· Light"
-64|            }
-65|        })();
-66|    </script>
-67|
-68|    <div class="wrapper">
-69|        <header>
-70|    <nav class="navbar">
-71|        <div class="container">
-72|            <div class="navbar-header header-logo"><a href="/">duduwufufu1&#39;s Blog</a></div>
-73|            <div class="menu navbar-right">
-74|                
-75|                    <a class="menu-item" href="/archives">Posts</a>
-76|                
-77|                    <a class="menu-item" href="/category">Categories</a>
-78|                
-79|                    <a class="menu-item" href="/tag">Tags</a>
-80|                
-81|                    <a class="menu-item" href="/about">About</a>
-82|                
-83|                <input id="switch_default" type="checkbox" class="switch_default">
-84|                <label for="switch_default" class="toggleBtn"></label>
-85|            </div>
-86|        </div>
-87|    </nav>
-88|
-89|    
-90|    <nav class="navbar-mobile" id="nav-mobile">
-91|        <div class="container">
-92|            <div class="navbar-header">
-93|                <div>
-94|                    <a href="/">duduwufufu1&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
-95|                </div>
-96|                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
-97|            </div>
-98|            <div class="menu" id="mobile-menu">
-99|                
-100|                    <a class="menu-item" href="/archives">Posts</a>
-101|                
-102|                    <a class="menu-item" href="/category">Categories</a>
-103|                
-104|                    <a class="menu-item" href="/tag">Tags</a>
-105|                
-106|                    <a class="menu-item" href="/about">About</a>
-107|                
-108|            </div>
-109|        </div>
-110|    </nav>
-111|
-112|</header>
-113|<script>
-114|    var mobileBtn = function f() {
-115|        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
-116|        var mobileMenu = document.getElementById("mobile-menu");
-117|        if(toggleMenu.classList.contains("active")){
-118|           toggleMenu.classList.remove("active")
-119|            mobileMenu.classList.remove("active")
-120|        }else{
-121|            toggleMenu.classList.add("active")
-122|            mobileMenu.classList.add("active")
-123|        }
-124|    }
-125|</script>
-126|            <div class="main">
-127|                <div class="container">
-128|    <article class="post-wrap page">
-129|        
-130|        <h2 class="post-title">tag</h2>
-131|        
-132|        <section class="post-content">
-133|            
-134|        </section>
-135|    </article>
-136|</div>
-137|
-138|            </div>
-139|            <footer id="footer" class="footer">
-140|    <div class="copyright">
-141|        <span>© duduwufufu1 | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
-142|    </div>
-143|</footer>
-144|
-145|    </div>
-146|</body>
-147|
-148|</html>
+
+<body>
+    <script>
+        // this function is used to check current theme before page loaded.
+        (() => {
+            const currentTheme = window.localStorage && window.localStorage.getItem('theme') || '';
+            const isDark = currentTheme === 'dark';
+            const pagebody = document.getElementsByTagName('body')[0]
+            if (isDark) {
+                pagebody.classList.add('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Dark"
+            } else {
+                pagebody.classList.remove('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Light"
+            }
+        })();
+    </script>
+
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">duduwufufu1&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/devlog">DevLog</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">duduwufufu1&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/devlog">DevLog</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+            <div class="main">
+                <div class="container">
+    <article class="post-wrap page">
+        
+        <h2 class="post-title">tag</h2>
+        
+        <section class="post-content">
+            
+        </section>
+    </article>
+</div>
+
+            </div>
+            <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© duduwufufu1 | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+
+</html>

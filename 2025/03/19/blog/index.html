@@ -1,53 +1,52 @@
-1|<!DOCTYPE html>
-2|<html lang="zh-CN">
-3|
-4|<head>
-5|    <meta charset="UTF-8">
-6|<meta name="viewport"
-7|      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-8|<meta http-equiv="X-UA-Compatible" content="ie=edge">
-9|
-10|    <meta name="author" content="duduwufufu1">
-11|
-12|
-13|
-14|
-15|
-16|<title>blog | Hexo</title>
-17|
-18|
-19|
-20|    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="duduwufufu1">
+
+
+
+
+
+<title>blog | Hexo</title>
+
+
+
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
     <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
 
     <link rel="icon" href="/favicon.ico">
-21|
-22|
-23|
-24|
-25|    <!-- stylesheets list from _config.yml -->
-26|    
-27|    <link rel="stylesheet" href="/css/style.css">
-28|    
-29|
-30|
-31|
-32|    <!-- scripts list from _config.yml -->
-33|    
-34|    <script src="/js/script.js" defer></script>
-35|    
-36|    <script src="/js/tocbot.min.js" defer></script>
-37|    
-38|
-39|
-40|
-41|    
-42|    
-43|        
-44|    
-45|
-46|
-47|<meta name="generator" content="Hexo 7.3.0">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js" defer></script>
+    
+    <script src="/js/tocbot.min.js" defer></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 7.3.0">
     
     <!-- GSAP Animation Library -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
@@ -56,244 +55,248 @@
     <!-- Custom Animations -->
     <script src="/js/animation.js" defer></script>
 </head>
-48|
-49|<body>
-50|    <script>
-51|        // this function is used to check current theme before page loaded.
-52|        (() => {
-53|            const currentTheme = window.localStorage && window.localStorage.getItem('theme') || '';
-54|            const isDark = currentTheme === 'dark';
-55|            const pagebody = document.getElementsByTagName('body')[0]
-56|            if (isDark) {
-57|                pagebody.classList.add('dark-theme');
-58|                // mobile
-59|                document.getElementById("mobile-toggle-theme").innerText = "· Dark"
-60|            } else {
-61|                pagebody.classList.remove('dark-theme');
-62|                // mobile
-63|                document.getElementById("mobile-toggle-theme").innerText = "· Light"
-64|            }
-65|        })();
-66|    </script>
-67|
-68|    <div class="wrapper">
-69|        <header>
-70|    <nav class="navbar">
-71|        <div class="container">
-72|            <div class="navbar-header header-logo"><a href="/">duduwufufu1&#39;s Blog</a></div>
-73|            <div class="menu navbar-right">
-74|                
-75|                    <a class="menu-item" href="/archives">Posts</a>
-76|                
-77|                    <a class="menu-item" href="/category">Categories</a>
-78|                
-79|                    <a class="menu-item" href="/tag">Tags</a>
-80|                
-81|                    <a class="menu-item" href="/about">About</a>
-82|                
-83|                <input id="switch_default" type="checkbox" class="switch_default">
-84|                <label for="switch_default" class="toggleBtn"></label>
-85|            </div>
-86|        </div>
-87|    </nav>
-88|
-89|    
-90|    <nav class="navbar-mobile" id="nav-mobile">
-91|        <div class="container">
-92|            <div class="navbar-header">
-93|                <div>
-94|                    <a href="/">duduwufufu1&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
-95|                </div>
-96|                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
-97|            </div>
-98|            <div class="menu" id="mobile-menu">
-99|                
-100|                    <a class="menu-item" href="/archives">Posts</a>
-101|                
-102|                    <a class="menu-item" href="/category">Categories</a>
-103|                
-104|                    <a class="menu-item" href="/tag">Tags</a>
-105|                
-106|                    <a class="menu-item" href="/about">About</a>
-107|                
-108|            </div>
-109|        </div>
-110|    </nav>
-111|
-112|</header>
-113|<script>
-114|    var mobileBtn = function f() {
-115|        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
-116|        var mobileMenu = document.getElementById("mobile-menu");
-117|        if(toggleMenu.classList.contains("active")){
-118|           toggleMenu.classList.remove("active")
-119|            mobileMenu.classList.remove("active")
-120|        }else{
-121|            toggleMenu.classList.add("active")
-122|            mobileMenu.classList.add("active")
-123|        }
-124|    }
-125|</script>
-126|            <div class="main">
-127|                <div class="container">
-128|    
-129|    
-130|        <div class="post-toc">
-131|    <div class="tocbot-list">
-132|    </div>
-133|    <div class="tocbot-list-menu">
-134|        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
-135|        <a onclick="go_top()">Back to top</a>
-136|        <a onclick="go_bottom()">Go to bottom</a>
-137|    </div>
-138|</div>
-139|
-140|<script>
-141|    var tocbot_timer;
-142|    var DEPTH_MAX = 6; // 为 6 时展开所有
-143|    var tocbot_default_config = {
-144|        tocSelector: '.tocbot-list',
-145|        contentSelector: '.post-content',
-146|        headingSelector: 'h1, h2, h3, h4, h5',
-147|        orderedList: false,
-148|        scrollSmooth: true,
-149|        onClick: extend_click,
-150|    };
-151|
-152|    function extend_click() {
-153|        clearTimeout(tocbot_timer);
-154|        tocbot_timer = setTimeout(function() {
-155|            tocbot.refresh(obj_merge(tocbot_default_config, {
-156|                hasInnerContainers: true
-157|            }));
-158|        }, 420); // 这个值是由 tocbot 源码里定义的 scrollSmoothDuration 得来的
-159|    }
-160|
-161|    document.ready(function() {
-162|        tocbot.init(obj_merge(tocbot_default_config, {
-163|            collapseDepth: 1
-164|        }));
-165|    });
-166|
-167|    function expand_toc() {
-168|        var b = document.querySelector('.tocbot-toc-expand');
-169|        var expanded = b.getAttribute('data-expanded');
-170|        expanded ? b.removeAttribute('data-expanded') : b.setAttribute('data-expanded', true);
-171|        tocbot.refresh(obj_merge(tocbot_default_config, {
-172|            collapseDepth: expanded ? 1 : DEPTH_MAX
-173|        }));
-174|        b.innerText = expanded ? 'Expand all' : 'Collapse all';
-175|    }
-176|
-177|    function go_top() {
-178|        window.scrollTo(0, 0);
-179|    }
-180|
-181|    function go_bottom() {
-182|        window.scrollTo(0, document.body.scrollHeight);
-183|    }
-184|
-185|    function obj_merge(target, source) {
-186|        for (var item in source) {
-187|            if (source.hasOwnProperty(item)) {
-188|                target[item] = source[item];
-189|            }
-190|        }
-191|        return target;
-192|    }
-193|</script>
-194|    
-195|
-196|    
-197|    <article class="post-wrap">
-198|        <header class="post-header">
-199|            <h1 class="post-title">blog</h1>
-200|            
-201|                <div class="post-meta">
-202|                    
-203|                        Author: <a itemprop="author" rel="author" href="/">duduwufufu1</a>
-204|                    
-205|
-206|                    
-207|                        <span class="post-time">
-208|                        Date: <a href="#">March 19, 2025&nbsp;&nbsp;19:20:00</a>
-209|                        </span>
-210|                    
-211|                    
-212|                </div>
-213|            
-214|        </header>
-215|
-216|        <div class="post-content">
-217|            <h1 id="实验步骤与内容"><a href="#实验步骤与内容" class="headerlink" title="实验步骤与内容"></a>实验步骤与内容</h1><h2 id="1-准备工作"><a href="#1-准备工作" class="headerlink" title="1. 准备工作"></a>1. 准备工作</h2><h3 id="安装-Node-js"><a href="#安装-Node-js" class="headerlink" title="安装 Node.js"></a>安装 Node.js</h3><pre><code class="language-bash"># 从官网下载并安装 Node.js
-218|# 验证安装是否成功
-219|node -v
-220|npm -v
-221|</code></pre>
-222|
-223|        </div>
-224|
-225|        
-226|            <section class="post-copyright">
-227|                
-228|                    <p class="copyright-item">
-229|                        <span>Author:</span>
-230|                        <span>duduwufufu1</span>
-231|                    </p>
-232|                
-233|                
-234|                    <p class="copyright-item">
-235|                        <span>Permalink:</span>
-236|                        <span><a href="http://example.com/2025/03/19/blog/">http://example.com/2025/03/19/blog/</a></span>
-237|                    </p>
-238|                
-239|                
-240|                    <p class="copyright-item">
-241|                        <span>License:</span>
-242|                        <span>Copyright (c) 2019 <a target="_blank" rel="noopener" href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> LICENSE</span>
-243|                    </p>
-244|                
-245|                
-246|                     <p class="copyright-item">
-247|                         <span>Slogan:</span>
-248|                         <span>Do you believe in <strong>DESTINY</strong>?</span>
-249|                     </p>
-250|                
-251|
-252|            </section>
-253|        
-254|        <section class="post-tags">
-255|            <div>
-256|                <span>Tag(s):</span>
-257|                <span class="tag">
-258|                    
-259|                </span>
-260|            </div>
-261|            <div>
-262|                <a href="javascript:window.history.back();">back</a>
-263|                <span>· </span>
-264|                <a href="/">home</a>
-265|            </div>
-266|        </section>
-267|        <section class="post-nav">
-268|            
-269|            
-270|            <a class="next" rel="next" href="/2025/03/17/hello-world/">Hello World</a>
-271|            
-272|        </section>
-273|
-274|
-275|    </article>
-276|</div>
-277|
-278|            </div>
-279|            <footer id="footer" class="footer">
-280|    <div class="copyright">
-281|        <span>© duduwufufu1 | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
-282|    </div>
-283|</footer>
-284|
-285|    </div>
-286|</body>
-287|
-288|</html>
+
+<body>
+    <script>
+        // this function is used to check current theme before page loaded.
+        (() => {
+            const currentTheme = window.localStorage && window.localStorage.getItem('theme') || '';
+            const isDark = currentTheme === 'dark';
+            const pagebody = document.getElementsByTagName('body')[0]
+            if (isDark) {
+                pagebody.classList.add('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Dark"
+            } else {
+                pagebody.classList.remove('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Light"
+            }
+        })();
+    </script>
+
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">duduwufufu1&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/devlog">DevLog</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">duduwufufu1&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/devlog">DevLog</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+            <div class="main">
+                <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    var tocbot_timer;
+    var DEPTH_MAX = 6; // 为 6 时展开所有
+    var tocbot_default_config = {
+        tocSelector: '.tocbot-list',
+        contentSelector: '.post-content',
+        headingSelector: 'h1, h2, h3, h4, h5',
+        orderedList: false,
+        scrollSmooth: true,
+        onClick: extend_click,
+    };
+
+    function extend_click() {
+        clearTimeout(tocbot_timer);
+        tocbot_timer = setTimeout(function() {
+            tocbot.refresh(obj_merge(tocbot_default_config, {
+                hasInnerContainers: true
+            }));
+        }, 420); // 这个值是由 tocbot 源码里定义的 scrollSmoothDuration 得来的
+    }
+
+    document.ready(function() {
+        tocbot.init(obj_merge(tocbot_default_config, {
+            collapseDepth: 1
+        }));
+    });
+
+    function expand_toc() {
+        var b = document.querySelector('.tocbot-toc-expand');
+        var expanded = b.getAttribute('data-expanded');
+        expanded ? b.removeAttribute('data-expanded') : b.setAttribute('data-expanded', true);
+        tocbot.refresh(obj_merge(tocbot_default_config, {
+            collapseDepth: expanded ? 1 : DEPTH_MAX
+        }));
+        b.innerText = expanded ? 'Expand all' : 'Collapse all';
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+    function obj_merge(target, source) {
+        for (var item in source) {
+            if (source.hasOwnProperty(item)) {
+                target[item] = source[item];
+            }
+        }
+        return target;
+    }
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">blog</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">duduwufufu1</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">March 19, 2025&nbsp;&nbsp;19:20:00</a>
+                        </span>
+                    
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h1 id="实验步骤与内容"><a href="#实验步骤与内容" class="headerlink" title="实验步骤与内容"></a>实验步骤与内容</h1><h2 id="1-准备工作"><a href="#1-准备工作" class="headerlink" title="1. 准备工作"></a>1. 准备工作</h2><h3 id="安装-Node-js"><a href="#安装-Node-js" class="headerlink" title="安装 Node.js"></a>安装 Node.js</h3><pre><code class="language-bash"># 从官网下载并安装 Node.js
+# 验证安装是否成功
+node -v
+npm -v
+</code></pre>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>duduwufufu1</span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>Permalink:</span>
+                        <span><a href="http://example.com/2025/03/19/blog/">http://example.com/2025/03/19/blog/</a></span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2019 <a target="_blank" rel="noopener" href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span>Do you believe in <strong>DESTINY</strong>?</span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+            
+            <a class="next" rel="next" href="/2025/03/17/hello-world/">Hello World</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+            </div>
+            <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© duduwufufu1 | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+
+</html>
