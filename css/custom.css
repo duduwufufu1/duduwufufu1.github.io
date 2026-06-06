@@ -1,0 +1,180 @@
+/* ========================================
+   Taste Optimizations — Chic Theme Enhancements
+   ======================================== */
+
+/* ---- Smooth Scroll ---- */
+html {
+  scroll-behavior: smooth;
+}
+
+/* ---- Selection ---- */
+::selection {
+  background: var(--color-accent);
+  color: #fff;
+}
+
+/* ---- Focus Styles for Accessibility ---- */
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+/* ---- Scrollbar Refinements ---- */
+html::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+html::-webkit-scrollbar-track {
+  background: transparent;
+}
+html::-webkit-scrollbar-thumb {
+  height: 40px;
+  background: var(--color-scrollbar-thumb);
+  border-radius: 16px;
+}
+html::-webkit-scrollbar-thumb:hover {
+  background: var(--color-scrollbar-hover);
+}
+
+/* ---- Dark Theme Selection ---- */
+body.dark-theme ::selection {
+  background: var(--color-accent);
+  color: #fff;
+}
+
+/* ---- Image Optimizations ---- */
+img {
+  max-width: 100%;
+  height: auto;
+}
+img[lazy] {
+  opacity: 0;
+  transition: opacity var(--transition-base);
+}
+img[lazy].loaded {
+  opacity: 1;
+}
+
+/* ---- Avatar Hover Enhancements ---- */
+.avatar img {
+  transition: transform var(--transition-spring), box-shadow var(--transition-base);
+  border-radius: var(--radius-full);
+}
+.avatar img:hover {
+  transform: scale(1.08);
+  box-shadow: var(--shadow-md);
+}
+
+/* ---- Social Links Hover ---- */
+.links .link-item {
+  display: inline-block;
+  transition: transform var(--transition-spring), color var(--transition-fast);
+}
+.links .link-item:hover {
+  transform: translateY(-3px);
+}
+
+/* ---- Navbar Mobile Toggle Refinements ---- */
+.navbar-mobile .menu {
+  transition: opacity var(--transition-base), transform var(--transition-base);
+  transform-origin: top;
+}
+.navbar-mobile .menu.active {
+  display: flex !important;
+  opacity: 1;
+}
+
+/* ---- Better TOC (Table of Contents) ---- */
+.toc {
+  position: sticky;
+  top: calc(var(--header-height) + 1rem);
+}
+
+/* ---- Card-style Posts (if used) ---- */
+.post-card {
+  background: var(--color-card-bg);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow var(--transition-base), transform var(--transition-base);
+}
+.post-card:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+
+.dark-theme .post-card {
+  background: var(--color-card-bg-dark);
+  box-shadow: var(--shadow-sm);
+}
+.dark-theme .post-card:hover {
+  box-shadow: var(--shadow-lg);
+}
+
+/* ---- Profile Description ---- */
+.description {
+  line-height: var(--line-height-tight);
+  max-width: 540px;
+  margin: 0 auto;
+}
+
+/* ---- Page Transition Entrance (used by GSAP) ---- */
+.gsap-fade {
+  opacity: 0;
+  transform: translateY(20px);
+}
+.gsap-fade-up {
+  opacity: 0;
+  transform: translateY(30px);
+}
+.gsap-fade-left {
+  opacity: 0;
+  transform: translateX(-20px);
+}
+.gsap-scale {
+  opacity: 0;
+  transform: scale(0.9);
+}
+
+/* ---- Reduced Motion ---- */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* ---- Print Styles ---- */
+@media print {
+  .navbar,
+  .navbar-mobile,
+  .toggleBtn,
+  .footer {
+    display: none !important;
+  }
+  body {
+    color: #000;
+    background: #fff;
+  }
+  a {
+    color: #000 !important;
+  }
+}
+
+/* ---- Subtle Loading Bar ---- */
+.loading-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--color-accent), var(--color-link-hover));
+  z-index: var(--z-overlay);
+  transition: width 0.3s ease;
+}

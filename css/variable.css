@@ -1,2 +1,80 @@
-/** light theme **/
-/** dark theme **/
+/* ========================================
+   Design Tokens — Chic Theme
+   ======================================== */
+
+:root {
+  /* ---- Colors: Light ---- */
+  --color-bg: #ffffff;
+  --color-bg-alt: #f8f9fa;
+  --color-text: #161209;
+  --color-text-secondary: #5c5c5c;
+  --color-link: #161209;
+  --color-link-hover: #2d96bd;
+  --color-accent: #1abc9c;
+  --color-border: #e6e6e6;
+  --color-scrollbar-thumb: #eeeeee;
+  --color-scrollbar-hover: #dddddd;
+  --color-toggle-bg: #e6e6e6;
+  --color-toggle-dot: #ffffff;
+  --color-toggle-shadow: rgba(180, 180, 180, 0.6);
+  --color-card-bg: #ffffff;
+  --color-card-shadow: rgba(0, 0, 0, 0.06);
+
+  /* ---- Colors: Dark ---- */
+  --color-bg-dark: #292a2d;
+  --color-bg-alt-dark: #222325;
+  --color-text-dark: #a9a9b3;
+  --color-text-secondary-dark: #888891;
+  --color-link-dark: #a9a9b3;
+  --color-link-hover-dark: #ffffff;
+  --color-accent-dark: #1abc9c;
+  --color-border-dark: #3a3b3e;
+  --color-card-bg-dark: #333436;
+  --color-card-shadow-dark: rgba(0, 0, 0, 0.3);
+
+  /* ---- Typography ---- */
+  --font-family: 'Microsoft Jhenghei', 'Lantinghei SC', 'lanting', 'PingFang SC', 'Segoe UI', 'Microsoft Yahei', 'Arial', sans-serif;
+  --font-mono: 'Fira Code', 'Cascadia Code', 'JetBrains Mono', 'Consolas', monospace;
+  --font-size-base: 11pt;
+  --font-size-small: 14px;
+  --font-size-large: 1.1rem;
+  --line-height-base: 2em;
+  --line-height-tight: 1.6;
+
+  /* ---- Spacing ---- */
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+  --spacing-2xl: 48px;
+
+  /* ---- Layout ---- */
+  --header-height: 4rem;
+  --content-max-width: 1200px;
+  --content-padding: 1em;
+  --footer-height: 4rem;
+
+  /* ---- Border Radius ---- */
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-full: 50%;
+
+  /* ---- Shadows ---- */
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.06);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.12);
+
+  /* ---- Transitions ---- */
+  --transition-fast: 0.2s ease;
+  --transition-base: 0.3s ease;
+  --transition-slow: 0.4s ease;
+  --transition-spring: 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  /* ---- Z-Index Scale ---- */
+  --z-dropdown: 100;
+  --z-sticky: 200;
+  --z-overlay: 300;
+  --z-modal: 400;
+}
