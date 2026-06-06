@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="author" content="duduwufufu1">
+    <meta name="description" content="duduwufufu1 的项目开发日志">
+    <title>DevLog | duduwufufu1&#39;s Blog</title>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+    <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+    <link rel="icon" href="/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css">
+    <script src="/js/script.js" defer></script>
+    <script src="/js/tocbot.min.js" defer></script>
+    <meta name="generator" content="Hexo 7.3.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+    <script src="/js/animation.js" defer></script>
+</head><body>
+    <script>
+        (() => {
+            const currentTheme = window.localStorage && window.localStorage.getItem('theme') || '';
+            const isDark = currentTheme === 'dark';
+            const pagebody = document.getElementsByTagName('body')[0];
+            if (isDark) { pagebody.classList.add('dark-theme');
+                document.getElementById("mobile-toggle-theme").innerText = "· Dark";
+            } else { pagebody.classList.remove('dark-theme');
+                document.getElementById("mobile-toggle-theme").innerText = "· Light"; }
+        })();
+    </script>
+    <div class="wrapper">
+        <header>
+            <nav class="navbar">
+                <div class="container">
+                    <div class="navbar-header header-logo"><a href="/">duduwufufu1&#39;s Blog</a></div>
+                    <div class="menu navbar-right">
+                        <a class="menu-item" href="/archives">Posts</a>
+                        <a class="menu-item" href="/category">Categories</a>
+                        <a class="menu-item" href="/tag">Tags</a>
+                        <a class="menu-item" href="/devlog">DevLog</a>
+                        <a class="menu-item" href="/about">About</a>
+                        <input id="switch_default" type="checkbox" class="switch_default">
+                        <label for="switch_default" class="toggleBtn"></label>
+                    </div>
+                </div>
+            </nav>
+            <nav class="navbar-mobile" id="nav-mobile">
+                <div class="container">
+                    <div class="navbar-header">
+                        <div><a href="/">duduwufufu1&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a></div>
+                        <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+                    </div>
+                    <div class="menu" id="mobile-menu">
+                        <a class="menu-item" href="/archives">Posts</a>
+                        <a class="menu-item" href="/category">Categories</a>
+                        <a class="menu-item" href="/tag">Tags</a>
+                        <a class="menu-item" href="/devlog">DevLog</a>
+                        <a class="menu-item" href="/about">About</a>
+                    </div>
+                </div>
+            </nav>
+        </header>
+        <script>
+            var mobileBtn = function f() {
+                var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+                var mobileMenu = document.getElementById("mobile-menu");
+                if(toggleMenu.classList.contains("active")){
+                   toggleMenu.classList.remove("active");
+                    mobileMenu.classList.remove("active");
+                }else{
+                    toggleMenu.classList.add("active");
+                    mobileMenu.classList.add("active");
+                }
+            };
+        </script>
+            <div class="main">
+                <div class="container" style="max-width: 800px;">
+
+                    <article class="post-wrap page">
+                        <h1 class="post-title">📋 开发日志</h1>
+                        <section class="post-content">
+                            <p>项目开发过程中的日志记录。按项目分类，自动从 Obsidian 同步。</p>
+                            
+<style>
+.devlog-project-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    margin-top: 1.5em;
+}
+.devlog-project-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4em;
+    padding: 1.5em;
+    border: 1px solid var(--color-border, #e6e6e6);
+    border-radius: var(--radius-md, 8px);
+    background: var(--color-card-bg, #fff);
+    box-shadow: var(--shadow-sm, 0 1px 3px rgba(0,0,0,0.06));
+    transition: box-shadow var(--transition-base, 0.3s), transform var(--transition-base, 0.3s);
+    text-decoration: none;
+    color: inherit;
+}
+.devlog-project-card:hover {
+    box-shadow: var(--shadow-md, 0 4px 12px rgba(0,0,0,0.08));
+    transform: translateY(-2px);
+}
+.dark-theme .devlog-project-card {
+    background: var(--color-card-bg-dark, #333436);
+    border-color: var(--color-border-dark, #3a3b3e);
+}
+.devlog-project-icon { font-size: 2rem; }
+.devlog-project-name { font-size: 1.3rem; font-weight: 700; }
+.devlog-project-desc { font-size: 0.95rem; color: var(--color-text-secondary, #5c5c5c); line-height: 1.6; }
+.dark-theme .devlog-project-desc { color: var(--color-text-secondary-dark, #888891); }
+.devlog-project-link { font-size: 0.85rem; color: var(--color-link-hover, #2d96bd); word-break: break-all; }
+
+.devlog-entry {
+    margin-bottom: 2.5em;
+    padding-bottom: 2em;
+    border-bottom: 1px solid var(--color-border, #e6e6e6);
+}
+.dark-theme .devlog-entry { border-color: var(--color-border-dark, #3a3b3e); }
+.devlog-entry:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+.devlog-entry-title {
+    font-size: 1.3rem;
+    margin-bottom: 0.3em;
+}
+.devlog-entry-title a { color: inherit; text-decoration: none; }
+.devlog-entry-title a:hover { color: var(--color-link-hover, #2d96bd); }
+.devlog-entry-date {
+    display: inline-block;
+    font-size: 0.85rem;
+    color: var(--color-text-secondary, #5c5c5c);
+    margin-bottom: 1em;
+    padding: 0.2em 0.8em;
+    background: var(--color-bg-alt, #f8f9fa);
+    border-radius: 4px;
+}
+.dark-theme .devlog-entry-date {
+    color: var(--color-text-secondary-dark, #888891);
+    background: var(--color-bg-alt-dark, #222325);
+}
+.devlog-entry-content h2 { font-size: 1.1rem; margin-top: 1.2em; }
+.devlog-entry-content h3 { font-size: 1rem; margin-top: 1em; }
+.devlog-entry-content h4 { font-size: 0.95rem; margin-top: 0.8em; }
+.devlog-entry-content table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1em 0;
+    font-size: 0.9rem;
+}
+.devlog-entry-content th, .devlog-entry-content td {
+    border: 1px solid var(--color-border, #e6e6e6);
+    padding: 0.5em 0.8em;
+    text-align: left;
+}
+.dark-theme .devlog-entry-content th,
+.dark-theme .devlog-entry-content td {
+    border-color: var(--color-border-dark, #3a3b3e);
+}
+.devlog-entry-content th {
+    background: var(--color-bg-alt, #f8f9fa);
+    font-weight: 600;
+}
+.dark-theme .devlog-entry-content th {
+    background: var(--color-bg-alt-dark, #222325);
+}
+.devlog-entry-content pre {
+    background: #f5f5f5;
+    border-radius: 6px;
+    padding: 1em;
+    overflow-x: auto;
+    font-size: 0.85rem;
+    line-height: 1.5;
+}
+.dark-theme .devlog-entry-content pre {
+    background: #1e1e1e;
+}
+.devlog-entry-content code {
+    font-family: 'Fira Code', 'Cascadia Code', 'Consolas', monospace;
+    font-size: 0.85em;
+    padding: 0.15em 0.3em;
+    background: #f0f0f0;
+    border-radius: 3px;
+}
+.dark-theme .devlog-entry-content code {
+    background: #333;
+}
+.devlog-entry-content ul, .devlog-entry-content ol {
+    padding-left: 1.5em;
+    line-height: 1.8;
+}
+.devlog-entry-content blockquote {
+    border-left: 3px solid var(--color-accent, #1abc9c);
+    margin: 1em 0;
+    padding: 0.5em 1em;
+    background: var(--color-bg-alt, #f8f9fa);
+    border-radius: 0 6px 6px 0;
+}
+.dark-theme .devlog-entry-content blockquote {
+    background: var(--color-bg-alt-dark, #222325);
+}
+.devlog-back-link {
+    display: inline-block;
+    margin-bottom: 1.5em;
+    font-size: 0.9rem;
+    color: var(--color-link-hover, #2d96bd);
+}
+.devlog-back-link:hover { text-decoration: underline; }
+</style>
+
+                            <div class="devlog-project-list">
+                                
+            <a class="devlog-project-card" href="/devlog/tastegood/">
+                <div class="devlog-project-icon">🍽️</div>
+                <div class="devlog-project-name">TasteGood</div>
+                <div class="devlog-project-desc">一款城市美食点评微信小程序，基于原生框架 + 微信云开发。</div>
+                <div class="devlog-project-link">https://github.com/duduwufufu1/TasteGood</div>
+                <div style="font-size:0.85rem;color:var(--color-text-secondary,#5c5c5c);margin-top:0.3em;">
+                    2 篇日志 · 最近更新 2026-06-06
+                </div>
+            </a>
+                            </div>
+                        </section>
+                    </article>
+                </div>
+            </div>
+
+            <footer id="footer" class="footer">
+                <div class="copyright">
+                    <span>&copy; duduwufufu1 | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> &amp; <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+                </div>
+            </footer>
+        </div>
+    </body>
+</html>
