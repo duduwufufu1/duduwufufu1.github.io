@@ -217,12 +217,15 @@
         <div class="post-content">
             <h1>TasteGood 开发日志 - 2026-06-08</h1>
 <h2 id="今日主题"><a href="#今日主题" class="headerlink" title="今日主题"></a>今日主题</h2>
-<p>本次开发围绕 TasteGood 的“记录体验闭环”继续推进，重点完成了两个方向：</p>
+<p>本次开发围绕 TasteGood 的“记录体验闭环”继续推进，重点完成了五个方向：</p>
 <ol>
 <li>详情页支持同一地点多次回访记录聚合展示。</li>
+<li>修复城市统计：同一地址重复回访不再增加店铺数。</li>
 <li>优化未登录状态体验，让用户在添加记录前先获得清晰登录引导。</li>
+<li>列表页按店铺/地点聚合展示，并补充回访次数、菜品、价格和一句话标题。</li>
+<li>修复城市页跳转地图层级错误，并在个人页最近记录中显示“第几次记录”。</li>
 </ol>
-<p>同时修复了一个城市统计问题：同一地址的重复回访不应让城市店铺数字增加。</p>
+<p>整体目标是让“记录一次美食”不只是单条流水账，而是能围绕同一地点形成连续的回访历史。</p>
 <h2 id="一、详情页：同址回访记录聚合"><a href="#一、详情页：同址回访记录聚合" class="headerlink" title="一、详情页：同址回访记录聚合"></a>一、详情页：同址回访记录聚合</h2>
 <p>详情页原本只展示当前单条记录。现在进入某条记录后，会自动查询当前用户在同一地点/同一店铺的其他记录，并用回访卡片展示完整历史。</p>
 <h3 id="匹配规则"><a href="#匹配规则" class="headerlink" title="匹配规则"></a>匹配规则</h3>
@@ -298,8 +301,77 @@
 <li><code>登录后同步并只展示你的记录</code></li>
 </ul>
 <p>按钮样式也改为更明显的主色胶囊按钮，保持 warm/card 美食杂志风格。</p>
-<h2 id="四、验证与发布"><a href="#四、验证与发布" class="headerlink" title="四、验证与发布"></a>四、验证与发布</h2>
-<p>本次开发均通过 Codex 完成代码修改，并进行了独立验证。</p>
+<h2 id="四、列表页：按店铺聚合展示回访信息"><a href="#四、列表页：按店铺聚合展示回访信息" class="headerlink" title="四、列表页：按店铺聚合展示回访信息"></a>四、列表页：按店铺聚合展示回访信息</h2>
+<p>列表页原本按记录条数展示。这样同一家店多次回访时，会出现多张几乎一样的卡片，信息密度偏低。</p>
+<p>现在列表页改为按“店铺 / 地点”聚合展示：</p>
+<ul>
+<li>同一地点只展示一张卡片</li>
+<li>卡片代表记录取该地点最新一次记录</li>
+<li>卡片新增回访标签：</li>
+<li><code>首次记录</code></li>
+<li><code>已回访 N 次</code></li>
+<li>卡片新增更多记录信息：</li>
+<li>一句话标题 <code>reviewTitle</code></li>
+<li>招牌菜 / 菜品 <code>dishName</code></li>
+<li>价格 <code>price</code></li>
+<li>星级</li>
+<li>城市和地址</li>
+</ul>
+<h3 id="交互价值"><a href="#交互价值" class="headerlink" title="交互价值"></a>交互价值</h3>
+<p>这个改动让列表页更像“店铺清单”，详情页则负责展示“同一家店的多次回访历史”。</p>
+<p>用户浏览列表时先看到去过哪些店，点进详情后再看每一次回访的具体记录。</p>
+<h3 id="文案一致性"><a href="#文案一致性" class="headerlink" title="文案一致性"></a>文案一致性</h3>
+<p>首页地图城市选择面板也统一了语义：</p>
+<ul>
+<li><code>条记录</code> → <code>家店铺</code></li>
+</ul>
+<h2 id="五、修复城市页跳转地图层级错误"><a href="#五、修复城市页跳转地图层级错误" class="headerlink" title="五、修复城市页跳转地图层级错误"></a>五、修复城市页跳转地图层级错误</h2>
+<p>今天还修复了一个地图层级 bug：从城市页点击某些城市，尤其是省会城市时，进入地图后会错误显示为省份层级，而不是城市层级。</p>
+<h3 id="根因"><a href="#根因" class="headerlink" title="根因"></a>根因</h3>
+<p>城市页点击城市后，会通过 <code>app.globalData.selectCity</code> 和 <code>selectCenter</code> 把目标城市传给首页地图。</p>
+<p>首页地图 <code>onShow()</code> 读取到目标城市后，原先直接使用 <code>setData()</code> 设置：</p>
+<ul>
+<li><code>level: "city"</code></li>
+<li><code>mapScale: 12</code></li>
+<li><code>mapCenter</code></li>
+</ul>
+<p>但首页地图已有一个 <code>setMapLevel()</code> 方法，用来在切换层级时临时开启 <code>ignoreNextScaleChange</code>。</p>
+<p>直接 <code>setData()</code> 没有开启这个保护。地图组件进入后会触发 <code>regionchange</code>，<code>syncLevelByScale()</code> 根据地图缩放值又把城市层级切回省份层级。</p>
+<h3 id="修复方案"><a href="#修复方案" class="headerlink" title="修复方案"></a>修复方案</h3>
+<p>将城市页跳转入口改为使用：</p>
+<pre><code class="language-js">this.setMapLevel({
+  level: &quot;city&quot;,
+  province,
+  city,
+  mapCenter,
+  mapScale: 12,
+  markers: [],
+  markerMeta: {}
+}, () =&gt; this.loadRecords());
+</code></pre>
+<p>这样进入城市层级时，初始地图缩放变化不会误触发层级回退。</p>
+<h2 id="六、个人页：最近记录显示“第几次记录”"><a href="#六、个人页：最近记录显示“第几次记录”" class="headerlink" title="六、个人页：最近记录显示“第几次记录”"></a>六、个人页：最近记录显示“第几次记录”</h2>
+<p>为了让“回访”概念在个人页也能被感知，最近记录新增了“第 N 次记录”标签。</p>
+<h3 id="计算方式"><a href="#计算方式" class="headerlink" title="计算方式"></a>计算方式</h3>
+<p>在个人页加载记录时：</p>
+<ol>
+<li>使用 <code>recordPlace.groupRecordsByPlace(records)</code> 按同一地点分组。</li>
+<li>每个分组内按 <code>createdAt</code> 从早到晚排序。</li>
+<li>给每条记录计算 <code>visitIndex</code>。</li>
+<li>最近记录仍然展示最新 5 条，但每条记录额外带上：</li>
+<li><code>visitIndex</code></li>
+<li><code>visitText: 第 N 次记录</code></li>
+</ol>
+<h3 id="UI 展示"><a href="#UI 展示" class="headerlink" title="UI 展示"></a>UI 展示</h3>
+<p>最近记录卡片中，店名右侧新增胶囊标签：</p>
+<ul>
+<li><code>第 1 次记录</code></li>
+<li><code>第 2 次记录</code></li>
+<li><code>第 N 次记录</code></li>
+</ul>
+<p>这样用户在个人页扫一眼就能知道，这条最近记录是某家店的第几次回访。</p>
+<h2 id="七、验证与发布"><a href="#七、验证与发布" class="headerlink" title="七、验证与发布"></a>七、验证与发布</h2>
+<p>本次开发均通过 Codex 完成代码修改，并由 Hermes 独立验证。</p>
 <h3 id="验证项"><a href="#验证项" class="headerlink" title="验证项"></a>验证项</h3>
 <ul>
 <li>JSON 可解析：通过</li>
@@ -308,6 +380,7 @@
 <li>页面级 WXML/JS 事件绑定检查：通过</li>
 <li>WXSS <code>animation</code> / <code>@keyframes</code> 检查：通过</li>
 <li><code>node --check</code>：通过</li>
+<li><code>git diff --check</code>：通过</li>
 <li>微信开发者工具 CLI 登录检查：通过</li>
 </ul>
 <h3 id="Git 提交"><a href="#Git 提交" class="headerlink" title="Git 提交"></a>Git 提交</h3>
@@ -315,20 +388,25 @@
 <li><code>8a27ef4 feat: 详情页回访记录聚合展示</code></li>
 <li><code>705a91b fix: 城市统计按地点去重</code></li>
 <li><code>b24326a feat: 优化未登录引导体验</code></li>
+<li><code>60dbf73 feat: 列表页展示回访店铺卡片</code></li>
+<li><code>c86199b fix: 修复城市跳转层级并标记回访次数</code></li>
 </ul>
 <h3 id="小程序上传版本"><a href="#小程序上传版本" class="headerlink" title="小程序上传版本"></a>小程序上传版本</h3>
 <ul>
 <li><code>1.0.6</code>：详情页新增同址回访记录聚合与堆叠卡片展示</li>
 <li><code>1.0.7</code>：修复城市统计重复地址计数问题</li>
 <li><code>1.0.8</code>：优化未登录引导与默认头像体验</li>
+<li><code>1.0.9</code>：列表页按店铺聚合并展示回访次数</li>
+<li><code>1.0.10</code>：修复城市跳转层级并添加回访次数标签</li>
 </ul>
-<h2 id="五、下一步建议"><a href="#五、下一步建议" class="headerlink" title="五、下一步建议"></a>五、下一步建议</h2>
-<p>下一步可以继续做“登录后首屏体验优化”：</p>
+<h2 id="八、下一步建议"><a href="#八、下一步建议" class="headerlink" title="八、下一步建议"></a>八、下一步建议</h2>
+<p>今天的主线已经基本完成：记录增强、同址回访、城市统计、列表聚合、个人页回访标签都已经串起来。</p>
+<p>下一步可以考虑做收尾型任务：</p>
 <ul>
-<li>首页/城市页未登录时展示更明确的登录引导</li>
-<li>个人页空状态增加“去添加第一家店”入口</li>
-<li>最近记录为空时给出更有设计感的空状态卡片</li>
-<li>可以考虑把同址回访统计也展示在列表卡片上，例如“已回访 3 次”</li>
+<li>小程序图标细节：去掉外围白色</li>
+<li>登录/空状态首屏体验继续打磨</li>
+<li>将 <code>feat/city-first</code> 分支合并到 <code>master</code></li>
+<li>做一次真机预览，重点检查地图层级切换、最近记录标签、列表聚合展示</li>
 </ul>
         </div>
 
