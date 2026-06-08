@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="duduwufufu1">
+
+
+
+
+<title>TasteGood 开发日志 - 2026-06-08 | duduwufufu1&#39;s Blog</title>
+
+
+
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+    <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js" defer></script>
+    
+    <script src="/js/tocbot.min.js" defer></script>
+    
+
+
+    
+    
+
+<meta name="generator" content="Hexo 7.3.0">
+    
+    <!-- GSAP Animation Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+    
+    <!-- Custom Animations -->
+    <script src="/js/animation.js" defer></script>
+</head><body>
+    <script>
+        // this function is used to check current theme before page loaded.
+        (() => {
+            const currentTheme = window.localStorage && window.localStorage.getItem('theme') || '';
+            const isDark = currentTheme === 'dark';
+            const pagebody = document.getElementsByTagName('body')[0]
+            if (isDark) {
+                pagebody.classList.add('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Dark"
+            } else {
+                pagebody.classList.remove('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Light"
+            }
+        })();
+    </script>
+
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">duduwufufu1&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">duduwufufu1&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>            <div class="main">
+                <div class="container">
+            <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    var tocbot_timer;
+    var DEPTH_MAX = 6;
+    var tocbot_default_config = {
+        tocSelector: '.tocbot-list',
+        contentSelector: '.post-content',
+        headingSelector: 'h1, h2, h3, h4, h5',
+        orderedList: false,
+        scrollSmooth: true,
+        onClick: extend_click,
+    };
+
+    function extend_click() {
+        clearTimeout(tocbot_timer);
+        tocbot_timer = setTimeout(function() {
+            tocbot.refresh(obj_merge(tocbot_default_config, {
+                hasInnerContainers: true
+            }));
+        }, 420);
+    }
+
+    document.ready(function() {
+        tocbot.init(obj_merge(tocbot_default_config, {
+            collapseDepth: 1
+        }));
+    });
+
+    function expand_toc() {
+        var b = document.querySelector('.tocbot-toc-expand');
+        var expanded = b.getAttribute('data-expanded');
+        expanded ? b.removeAttribute('data-expanded') : b.setAttribute('data-expanded', true);
+        tocbot.refresh(obj_merge(tocbot_default_config, {
+            collapseDepth: expanded ? 1 : DEPTH_MAX
+        }));
+        b.innerText = expanded ? 'Expand all' : 'Collapse all';
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+    function obj_merge(target, source) {
+        for (var item in source) {
+            if (source.hasOwnProperty(item)) {
+                target[item] = source[item];
+            }
+        }
+        return target;
+    }
+</script>
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">TasteGood 开发日志 - 2026-06-08</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">duduwufufu1</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">June 8, 2026</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                            Category: <a href="/category/">项目开发</a>
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h1>TasteGood 开发日志 - 2026-06-08</h1>
+<h2 id="今日主题"><a href="#今日主题" class="headerlink" title="今日主题"></a>今日主题</h2>
+<p>本次开发围绕 TasteGood 的“记录体验闭环”继续推进，重点完成了两个方向：</p>
+<ol>
+<li>详情页支持同一地点多次回访记录聚合展示。</li>
+<li>优化未登录状态体验，让用户在添加记录前先获得清晰登录引导。</li>
+</ol>
+<p>同时修复了一个城市统计问题：同一地址的重复回访不应让城市店铺数字增加。</p>
+<h2 id="一、详情页：同址回访记录聚合"><a href="#一、详情页：同址回访记录聚合" class="headerlink" title="一、详情页：同址回访记录聚合"></a>一、详情页：同址回访记录聚合</h2>
+<p>详情页原本只展示当前单条记录。现在进入某条记录后，会自动查询当前用户在同一地点/同一店铺的其他记录，并用回访卡片展示完整历史。</p>
+<h3 id="匹配规则"><a href="#匹配规则" class="headerlink" title="匹配规则"></a>匹配规则</h3>
+<p>同一地点判断采用保守规则，避免误合并：</p>
+<ul>
+<li>优先使用可靠地址：<code>city + address</code></li>
+<li>如果地址为空，或地址是“已选择位置...”这类占位地址，则使用：<code>city + name</code></li>
+<li>不使用复杂地理距离算法，避免不同店铺被误合并</li>
+</ul>
+<h3 id="UI 展示"><a href="#UI 展示" class="headerlink" title="UI 展示"></a>UI 展示</h3>
+<p>详情页新增“回访记录”区域：</p>
+<ul>
+<li>多次记录时显示：<code>回访记录 · N 次</code></li>
+<li>单次记录时显示：<code>本次记录</code></li>
+<li>使用 swiper 展示每次记录</li>
+<li>每张卡片展示：</li>
+<li>第 N 次</li>
+<li>时间</li>
+<li>一句话评价</li>
+<li>菜品 / 价格</li>
+<li>星级</li>
+<li>标签</li>
+<li>具体评价</li>
+</ul>
+<p>顶部图片轮播也改为同一地点所有记录的图片合集，并自动去重。这样即使当前记录没有图片，也可以展示同一地点历史记录里的图片。</p>
+<h2 id="二、修复城市统计：重复地址不再增加店铺数"><a href="#二、修复城市统计：重复地址不再增加店铺数" class="headerlink" title="二、修复城市统计：重复地址不再增加店铺数"></a>二、修复城市统计：重复地址不再增加店铺数</h2>
+<p>在添加同一地址的新回访记录后，城市页原本会把记录条数直接加一，导致“几家店铺”的数字被错误抬高。</p>
+<h3 id="根因"><a href="#根因" class="headerlink" title="根因"></a>根因</h3>
+<p>城市页、首页地图、个人页足迹原先都按 record 条数统计。</p>
+<p>但实际 UI 语义是“店铺数 / 地点数”，而不是“记录数”。多次回访同一家店时，应该只算一个地点。</p>
+<h3 id="修复方案"><a href="#修复方案" class="headerlink" title="修复方案"></a>修复方案</h3>
+<p>新增 <code>utils/record-place.js</code>，统一封装地点去重逻辑：</p>
+<ul>
+<li><code>getPlaceKey(record)</code>：生成地点唯一 key</li>
+<li><code>isSamePlace(currentRecord, record)</code>：判断两条记录是否属于同一地点</li>
+<li><code>groupRecordsByPlace(records)</code>：按地点聚合记录</li>
+<li><code>getMergedImages(records)</code>：合并同地点图片</li>
+</ul>
+<p>修改范围：</p>
+<ul>
+<li>城市页：城市卡片 <code>count</code> 改为唯一地点数</li>
+<li>城市页顶部：文案从“记录”改成“店铺”</li>
+<li>首页地图：全国/省份/城市层级 marker 统计按唯一地点计算</li>
+<li>城市地图层级：同地址只生成一个 marker</li>
+<li>个人页足迹：城市热力不再因重复回访虚高</li>
+<li>详情页：复用统一同地点判断逻辑</li>
+</ul>
+<h2 id="三、未登录体验优化"><a href="#三、未登录体验优化" class="headerlink" title="三、未登录体验优化"></a>三、未登录体验优化</h2>
+<p>添加记录页之前的体验比较突兀：用户可以进入表单填写，但保存时才提示需要登录。</p>
+<p>现在改为：用户未登录时进入添加记录页，先看到一个产品化登录引导卡，不再展示整套表单。</p>
+<h3 id="添加记录页"><a href="#添加记录页" class="headerlink" title="添加记录页"></a>添加记录页</h3>
+<p>未登录时展示：</p>
+<ul>
+<li>小标题：<code>PRIVATE NOTEBOOK</code></li>
+<li>主标题：<code>先登录，再记录美味</code></li>
+<li>说明：<code>登录后会把每一次探店安全保存到你的私人美食地图。</code></li>
+<li>标签：<code>私密保存</code>、<code>同步足迹</code></li>
+<li>主按钮：<code>去我的页登录</code></li>
+</ul>
+<p>点击按钮会跳转到个人页登录。</p>
+<p>已登录时，原添加/编辑记录流程保持不变。</p>
+<h3 id="个人页登录卡片"><a href="#个人页登录卡片" class="headerlink" title="个人页登录卡片"></a>个人页登录卡片</h3>
+<p>个人页默认头像从简单“味”字升级为 CSS 渐变徽章：</p>
+<ul>
+<li>圆形渐变底</li>
+<li>内部“味”字</li>
+<li>小装饰点</li>
+<li>外层光晕和边框</li>
+</ul>
+<p>未登录状态文案改为：</p>
+<ul>
+<li><code>开启你的美食地图</code></li>
+<li><code>登录后同步并只展示你的记录</code></li>
+</ul>
+<p>按钮样式也改为更明显的主色胶囊按钮，保持 warm/card 美食杂志风格。</p>
+<h2 id="四、验证与发布"><a href="#四、验证与发布" class="headerlink" title="四、验证与发布"></a>四、验证与发布</h2>
+<p>本次开发均通过 Codex 完成代码修改，并进行了独立验证。</p>
+<h3 id="验证项"><a href="#验证项" class="headerlink" title="验证项"></a>验证项</h3>
+<ul>
+<li>JSON 可解析：通过</li>
+<li>UTF-8 BOM 检查：通过</li>
+<li>WXML/XML/SVG/HTML <code>?/</code> 损坏检查：通过</li>
+<li>页面级 WXML/JS 事件绑定检查：通过</li>
+<li>WXSS <code>animation</code> / <code>@keyframes</code> 检查：通过</li>
+<li><code>node --check</code>：通过</li>
+<li>微信开发者工具 CLI 登录检查：通过</li>
+</ul>
+<h3 id="Git 提交"><a href="#Git 提交" class="headerlink" title="Git 提交"></a>Git 提交</h3>
+<ul>
+<li><code>8a27ef4 feat: 详情页回访记录聚合展示</code></li>
+<li><code>705a91b fix: 城市统计按地点去重</code></li>
+<li><code>b24326a feat: 优化未登录引导体验</code></li>
+</ul>
+<h3 id="小程序上传版本"><a href="#小程序上传版本" class="headerlink" title="小程序上传版本"></a>小程序上传版本</h3>
+<ul>
+<li><code>1.0.6</code>：详情页新增同址回访记录聚合与堆叠卡片展示</li>
+<li><code>1.0.7</code>：修复城市统计重复地址计数问题</li>
+<li><code>1.0.8</code>：优化未登录引导与默认头像体验</li>
+</ul>
+<h2 id="五、下一步建议"><a href="#五、下一步建议" class="headerlink" title="五、下一步建议"></a>五、下一步建议</h2>
+<p>下一步可以继续做“登录后首屏体验优化”：</p>
+<ul>
+<li>首页/城市页未登录时展示更明确的登录引导</li>
+<li>个人页空状态增加“去添加第一家店”入口</li>
+<li>最近记录为空时给出更有设计感的空状态卡片</li>
+<li>可以考虑把同址回访统计也展示在列表卡片上，例如“已回访 3 次”</li>
+</ul>
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>duduwufufu1</span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>Permalink:</span>
+                        <span><a href="http://example.com/2026/06/08/tastegood-devlog-2026-06-08/">http://example.com/2026/06/08/tastegood-devlog-2026-06-08/</a></span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2019 <a target="_blank" rel="noopener" href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span>Do you believe in <strong>DESTINY</strong>?</span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                        <a class="tag" href="/tag/">#微信小程序</a>
+                    
+                        <a class="tag" href="/tag/">#TasteGood</a>
+                    
+                        <a class="tag" href="/tag/">#开发日志</a>
+                    
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+            
+        </section>
+
+
+    </article>
+</div>
+            </div>            <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>&copy; duduwufufu1 | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> &amp; <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+
+</html>
